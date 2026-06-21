@@ -464,6 +464,19 @@ void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		{
 			if ((*it)->sel == true)
 			{
+				CMyShape* p = *it;
+				for (auto& group : m_G)
+				{
+					auto git = group.group.begin();
+					while (git != group.group.end())
+					{
+						if (*git == p)
+							git = group.group.erase(git);
+						else
+							git++;
+					}
+				}
+				delete p;
 				it = m_shapes.erase(it);
 			}
 			else
